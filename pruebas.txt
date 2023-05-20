@@ -1,0 +1,14 @@
+// Crear un nodo de persona
+CREATE (:Persona {nombre: 'John', edad: 30})
+
+// Crear un nodo de película
+CREATE (:Pelicula {titulo: 'Inception', año: 2010})
+
+// Crear una relación entre una persona y una película
+MATCH (p:Persona), (m:Pelicula)
+WHERE p.nombre = 'John' AND m.titulo = 'Inception'
+CREATE (p)-[:VIO]->(m)
+
+// Consulta para obtener todas las personas y las películas que han visto
+MATCH (p:Persona)-[:VIO]->(m:Pelicula)
+RETURN p.nombre, m.titulo
